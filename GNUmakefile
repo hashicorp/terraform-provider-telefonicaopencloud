@@ -17,9 +17,6 @@ test: fmtcheck
 testacc: fmtcheck
 	TF_ACC=1 go test $(TEST) -v $(TESTARGS) -timeout 360m
 
-testrace: fmtcheck
-	TF_ACC= go test -race $(TEST) $(TESTARGS)
-
 cover:
 	@go tool cover 2>/dev/null; if [ $$? -eq 3 ]; then \
 		go get -u golang.org/x/tools/cmd/cover; \
@@ -72,4 +69,4 @@ website-test:
 		@$(MAKE) -C $(GOPATH)/src/$(WEBSITE_REPO) website-provider-test PROVIDER_PATH=$(shell pwd) PROVIDER_NAME=$(PKG_NAME)
 
 
-.PHONY: build test testacc testrace cover vet fmt fmtcheck errcheck vendor-status test-compile website website-test
+.PHONY: build test testacc cover vet fmt fmtcheck errcheck vendor-status test-compile website website-test
