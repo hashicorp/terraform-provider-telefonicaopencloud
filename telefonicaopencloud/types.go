@@ -14,16 +14,16 @@ import (
 	"github.com/gophercloud/gophercloud/openstack/compute/v2/extensions/servergroups"
 	"github.com/gophercloud/gophercloud/openstack/dns/v2/recordsets"
 	"github.com/gophercloud/gophercloud/openstack/dns/v2/zones"
-	"github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/fwaas/firewalls"
-	"github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/fwaas/policies"
-	"github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/fwaas/routerinsertion"
-	"github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/fwaas/rules"
 	"github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/layer3/floatingips"
 	"github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/layer3/routers"
 	"github.com/gophercloud/gophercloud/openstack/networking/v2/networks"
 	"github.com/gophercloud/gophercloud/openstack/networking/v2/ports"
 	"github.com/gophercloud/gophercloud/openstack/networking/v2/subnets"
 	"github.com/huaweicloud/golangsdk/openstack/networking/v1/eips"
+	"github.com/huaweicloud/golangsdk/openstack/networking/v2/extensions/fwaas_v2/firewall_groups"
+	"github.com/huaweicloud/golangsdk/openstack/networking/v2/extensions/fwaas_v2/policies"
+	"github.com/huaweicloud/golangsdk/openstack/networking/v2/extensions/fwaas_v2/routerinsertion"
+	"github.com/huaweicloud/golangsdk/openstack/networking/v2/extensions/fwaas_v2/rules"
 )
 
 // LogRoundTripper satisfies the http.RoundTripper interface and is used to
@@ -149,33 +149,6 @@ func (lrt *LogRoundTripper) formatJSON(raw []byte) string {
 	}
 
 	return string(pretty)
-}
-
-// Firewall is an TelefonicaOpenCloud firewall.
-type Firewall struct {
-	firewalls.Firewall
-	routerinsertion.FirewallExt
-}
-
-// FirewallCreateOpts represents the attributes used when creating a new firewall.
-type FirewallCreateOpts struct {
-	firewalls.CreateOpts
-	ValueSpecs map[string]string `json:"value_specs,omitempty"`
-}
-
-// ToFirewallCreateMap casts a CreateOptsExt struct to a map.
-// It overrides firewalls.ToFirewallCreateMap to add the ValueSpecs field.
-func (opts FirewallCreateOpts) ToFirewallCreateMap() (map[string]interface{}, error) {
-	return BuildRequest(opts, "firewall")
-}
-
-//FirewallUpdateOpts
-type FirewallUpdateOpts struct {
-	firewalls.UpdateOptsBuilder
-}
-
-func (opts FirewallUpdateOpts) ToFirewallUpdateMap() (map[string]interface{}, error) {
-	return BuildRequest(opts, "firewall")
 }
 
 // FloatingIPCreateOpts represents the attributes used when creating a new floating ip.
@@ -354,4 +327,31 @@ func (opts ZoneCreateOpts) ToZoneCreateMap() (map[string]interface{}, error) {
 type EIPCreateOpts struct {
 	eips.ApplyOpts
 	ValueSpecs map[string]string `json:"value_specs,omitempty"`
+}
+
+// FirewallGroup is an OpenTelekomCloud firewall group.
+type FirewallGroup struct {
+	firewall_groups.FirewallGroup
+	routerinsertion.FirewallGroupExt
+}
+
+// FirewallGroupCreateOpts represents the attributes used when creating a new firewall.
+type FirewallGroupCreateOpts struct {
+	firewall_groups.CreateOpts
+	ValueSpecs map[string]string `json:"value_specs,omitempty"`
+}
+
+// ToFirewallCreateMap casts a CreateOptsExt struct to a map.
+// It overrides firewalls.ToFirewallCreateMap to add the ValueSpecs field.
+func (opts FirewallGroupCreateOpts) ToFirewallCreateMap() (map[string]interface{}, error) {
+	return BuildRequest(opts, "firewall_group")
+}
+
+//FirewallUpdateOpts
+type FirewallGroupUpdateOpts struct {
+	firewall_groups.UpdateOptsBuilder
+}
+
+func (opts FirewallGroupUpdateOpts) ToFirewallUpdateMap() (map[string]interface{}, error) {
+	return BuildRequest(opts, "firewall")
 }

@@ -2488,6 +2488,30 @@
 			"revisionTime": "2018-03-15T11:09:47Z"
 		},
 		{
+			"checksumSHA1": "lx2mkQoMmHi9sUPVc+Be4f6xRnE=",
+			"path": "github.com/huaweicloud/golangsdk/openstack/networking/v2/extensions/fwaas_v2/firewall_groups",
+			"revision": "1ef4c250ce2ea6c28095385c1800ac8a74492ca9",
+			"revisionTime": "2018-09-05T09:58:59Z"
+		},
+		{
+			"checksumSHA1": "pRGAfv69kM7bv/ceaDtVUeBS9yM=",
+			"path": "github.com/huaweicloud/golangsdk/openstack/networking/v2/extensions/fwaas_v2/policies",
+			"revision": "1ef4c250ce2ea6c28095385c1800ac8a74492ca9",
+			"revisionTime": "2018-09-05T09:58:59Z"
+		},
+		{
+			"checksumSHA1": "Sb83Y7ziMnd59LYr+0ES8eI7VBs=",
+			"path": "github.com/huaweicloud/golangsdk/openstack/networking/v2/extensions/fwaas_v2/routerinsertion",
+			"revision": "1ef4c250ce2ea6c28095385c1800ac8a74492ca9",
+			"revisionTime": "2018-09-05T09:58:59Z"
+		},
+		{
+			"checksumSHA1": "/5s7eQO2tQi9FBAwyIUpqiEtk4U=",
+			"path": "github.com/huaweicloud/golangsdk/openstack/networking/v2/extensions/fwaas_v2/rules",
+			"revision": "1ef4c250ce2ea6c28095385c1800ac8a74492ca9",
+			"revisionTime": "2018-09-05T09:58:59Z"
+		},
+		{
 			"checksumSHA1": "ia3iK8E8dcap5Eyps4Ijl/7Aj/k=",
 			"path": "github.com/huaweicloud/golangsdk/openstack/rds/v1/datastores",
 			"revision": "b30e33595f46378156035bfec5b52b350c4b2b72",
@@ -2688,5 +2712,5 @@
 			"versionExact": "v1.6.1"
 		}
 	],
-	"rootPath": "github.com/huaweicloud/terraform-provider-telefonicaopencloud"
+	"rootPath": "github.com/terraform-providers/terraform-provider-telefonicaopencloud"
 }
