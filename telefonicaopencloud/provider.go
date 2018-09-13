@@ -176,6 +176,9 @@ func Provider() terraform.ResourceProvider {
 			"telefonicaopencloud_networking_secgroup_v2": dataSourceNetworkingSecGroupV2(),
 			"telefonicaopencloud_rds_flavors_v1":         dataSourceRdsFlavorV1(),
 			"telefonicaopencloud_s3_bucket_object":       dataSourceS3BucketObject(),
+			"telefonicaopencloud_rts_stack_v1":           dataSourceRTSStackV1(),
+			"telefonicaopencloud_rts_stack_resource_v1":  dataSourceRTSStackResourcesV1(),
+			"telefonicaopencloud_rts_software_config_v1": dataSourceRtsSoftwareConfigV1(),
 		},
 
 		ResourcesMap: map[string]*schema.Resource{
@@ -216,6 +219,8 @@ func Provider() terraform.ResourceProvider {
 			"telefonicaopencloud_s3_bucket":                       resourceS3Bucket(),
 			"telefonicaopencloud_s3_bucket_policy":                resourceS3BucketPolicy(),
 			"telefonicaopencloud_s3_bucket_object":                resourceS3BucketObject(),
+			"telefonicaopencloud_rts_stack_v1":                    resourceRTSStackV1(),
+			"telefonicaopencloud_rts_software_config_v1":          resourceSoftwareConfigV1(),
 		},
 
 		ConfigureFunc: configureProvider,
