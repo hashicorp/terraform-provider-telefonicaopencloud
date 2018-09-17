@@ -376,6 +376,7 @@ func (c *Config) imageV2Client(region string) (*gophercloud.ServiceClient, error
 func (c *Config) networkingV1Client(region string) (*golangsdk.ServiceClient, error) {
 	return huaweisdk.NewNetworkV1(c.HwClient, golangsdk.EndpointOpts{
 		Region:       c.determineRegion(region),
+		Name:         "neutron",
 		Availability: c.getHwEndpointType(),
 	})
 }
