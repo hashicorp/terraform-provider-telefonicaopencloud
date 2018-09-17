@@ -182,6 +182,7 @@ func Provider() terraform.ResourceProvider {
 			"telefonicaopencloud_rts_stack_v1":           dataSourceRTSStackV1(),
 			"telefonicaopencloud_rts_stack_resource_v1":  dataSourceRTSStackResourcesV1(),
 			"telefonicaopencloud_rts_software_config_v1": dataSourceRtsSoftwareConfigV1(),
+			"telefonicaopencloud_sfs_file_system_v2":     dataSourceSFSFileSystemV2(),
 		},
 
 		ResourcesMap: map[string]*schema.Resource{
@@ -226,6 +227,7 @@ func Provider() terraform.ResourceProvider {
 			"telefonicaopencloud_vpc_subnet_v1":                   resourceVpcSubnetV1(),
 			"telefonicaopencloud_rts_stack_v1":                    resourceRTSStackV1(),
 			"telefonicaopencloud_rts_software_config_v1":          resourceSoftwareConfigV1(),
+			"telefonicaopencloud_sfs_file_system_v2":              resourceSFSFileSystemV2(),
 		},
 
 		ConfigureFunc: configureProvider,
