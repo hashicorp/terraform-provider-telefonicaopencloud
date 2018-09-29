@@ -6,12 +6,12 @@ import (
 	"log"
 	"time"
 
-	"github.com/gophercloud/gophercloud"
-	"github.com/gophercloud/gophercloud/openstack/blockstorage/v2/volumes"
-	"github.com/gophercloud/gophercloud/openstack/compute/v2/extensions/volumeattach"
 	"github.com/hashicorp/terraform/helper/hashcode"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/helper/schema"
+	"github.com/huaweicloud/golangsdk"
+	"github.com/huaweicloud/golangsdk/openstack/blockstorage/v2/volumes"
+	"github.com/huaweicloud/golangsdk/openstack/compute/v2/extensions/volumeattach"
 )
 
 func resourceBlockStorageVolumeV2() *schema.Resource {
@@ -116,13 +116,18 @@ func resourceBlockStorageVolumeV2() *schema.Resource {
 				},
 				Set: resourceVolumeV2AttachmentHash,
 			},
+			"cascade": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
 		},
 	}
 }
 
 func resourceBlockStorageVolumeV2Create(d *schema.ResourceData, meta interface{}) error {
 	config := meta.(*Config)
-	blockStorageClient, err := config.blockStorageV2Client(GetRegion(d, config))
+	blockStorageClient, err := config.loadEVSV2Client(GetRegion(d, config))
 	if err != nil {
 		return fmt.Errorf("Error creating TelefonicaOpenCloud block storage client: %s", err)
 	}
@@ -177,7 +182,7 @@ func resourceBlockStorageVolumeV2Create(d *schema.ResourceData, meta interface{}
 
 func resourceBlockStorageVolumeV2Read(d *schema.ResourceData, meta interface{}) error {
 	config := meta.(*Config)
-	blockStorageClient, err := config.blockStorageV2Client(GetRegion(d, config))
+	blockStorageClient, err := config.loadEVSV2Client(GetRegion(d, config))
 	if err != nil {
 		return fmt.Errorf("Error creating TelefonicaOpenCloud block storage client: %s", err)
 	}
@@ -228,7 +233,7 @@ OUTER:
 
 func resourceBlockStorageVolumeV2Update(d *schema.ResourceData, meta interface{}) error {
 	config := meta.(*Config)
-	blockStorageClient, err := config.blockStorageV2Client(GetRegion(d, config))
+	blockStorageClient, err := config.loadEVSV2Client(GetRegion(d, config))
 	if err != nil {
 		return fmt.Errorf("Error creating TelefonicaOpenCloud block storage client: %s", err)
 	}
@@ -252,7 +257,7 @@ func resourceBlockStorageVolumeV2Update(d *schema.ResourceData, meta interface{}
 
 func resourceBlockStorageVolumeV2Delete(d *schema.ResourceData, meta interface{}) error {
 	config := meta.(*Config)
-	blockStorageClient, err := config.blockStorageV2Client(GetRegion(d, config))
+	blockStorageClient, err := config.loadEVSV2Client(GetRegion(d, config))
 	if err != nil {
 		return fmt.Errorf("Error creating TelefonicaOpenCloud block storage client: %s", err)
 	}
@@ -265,7 +270,7 @@ func resourceBlockStorageVolumeV2Delete(d *schema.ResourceData, meta interface{}
 	// make sure this volume is detached from all instances before deleting
 	if len(v.Attachments) > 0 {
 		log.Printf("[DEBUG] detaching volumes")
-		if computeClient, err := config.computeV2Client(GetRegion(d, config)); err != nil {
+		if computeClient, err := config.computeV2HWClient(GetRegion(d, config)); err != nil {
 			return err
 		} else {
 			for _, volumeAttachment := range v.Attachments {
@@ -293,11 +298,15 @@ func resourceBlockStorageVolumeV2Delete(d *schema.ResourceData, meta interface{}
 		}
 	}
 
+	// The snapshots associated with the disk are deleted together with the EVS disk if cascade value is true
+	deleteOpts := volumes.DeleteOpts{
+		Cascade: d.Get("cascade").(bool),
+	}
 	// It's possible that this volume was used as a boot device and is currently
 	// in a "deleting" state from when the instance was terminated.
 	// If this is true, just move on. It'll eventually delete.
 	if v.Status != "deleting" {
-		if err := volumes.Delete(blockStorageClient, d.Id()).ExtractErr(); err != nil {
+		if err := volumes.Delete(blockStorageClient, d.Id(), deleteOpts).ExtractErr(); err != nil {
 			return CheckDeleted(d, err, "volume")
 		}
 	}
@@ -335,11 +344,11 @@ func resourceVolumeMetadataV2(d *schema.ResourceData) map[string]string {
 
 // VolumeV2StateRefreshFunc returns a resource.StateRefreshFunc that is used to watch
 // an TelefonicaOpenCloud volume.
-func VolumeV2StateRefreshFunc(client *gophercloud.ServiceClient, volumeID string) resource.StateRefreshFunc {
+func VolumeV2StateRefreshFunc(client *golangsdk.ServiceClient, volumeID string) resource.StateRefreshFunc {
 	return func() (interface{}, string, error) {
 		v, err := volumes.Get(client, volumeID).Extract()
 		if err != nil {
-			if _, ok := err.(gophercloud.ErrDefault404); ok {
+			if _, ok := err.(golangsdk.ErrDefault404); ok {
 				return v, "deleted", nil
 			}
 			return nil, "", err
