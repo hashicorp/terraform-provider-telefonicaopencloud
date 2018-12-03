@@ -183,6 +183,8 @@ func Provider() terraform.ResourceProvider {
 			"telefonicaopencloud_rts_stack_resource_v1":  dataSourceRTSStackResourcesV1(),
 			"telefonicaopencloud_rts_software_config_v1": dataSourceRtsSoftwareConfigV1(),
 			"telefonicaopencloud_sfs_file_system_v2":     dataSourceSFSFileSystemV2(),
+			"telefonicaopencloud_csbs_backup_v1":         dataSourceCSBSBackupV1(),
+			"telefonicaopencloud_csbs_backup_policy_v1":  dataSourceCSBSBackupPolicyV1(),
 		},
 
 		ResourcesMap: map[string]*schema.Resource{
@@ -228,6 +230,8 @@ func Provider() terraform.ResourceProvider {
 			"telefonicaopencloud_rts_stack_v1":                    resourceRTSStackV1(),
 			"telefonicaopencloud_rts_software_config_v1":          resourceSoftwareConfigV1(),
 			"telefonicaopencloud_sfs_file_system_v2":              resourceSFSFileSystemV2(),
+			"telefonicaopencloud_csbs_backup_v1":                  resourceCSBSBackupV1(),
+			"telefonicaopencloud_csbs_backup_policy_v1":           resourceCSBSBackupPolicyV1(),
 		},
 
 		ConfigureFunc: configureProvider,
