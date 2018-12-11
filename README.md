@@ -55,8 +55,33 @@ $ terraform apply # Should all work if everything is correct.
 
 ## Quick Start
 
+1. AK/SK Configuration
+
 ```hcl
-# Configure the TelefonicaOpenCloud Provider
+# Configure the TelefonicaOpenCloud Provider with AK/SK
+# This will work with a single defined/default network, otherwise you need to specify network
+# to fix errrors about multiple networks found.
+provider "telefonicaopencloud" {
+  tenant_name = "tenant name"
+  access_key  = "access key"
+  secret_key  = "secret key"
+  # the auth url format follows: https://iam.{region_id}.telefonicaopencloud.com:443/v3
+  auth_url    = "https://iam.sa-chile-1.telefonicaopencloud.com:443/v3"
+  region      = "sa-chile-1"
+}
+
+# Create a web server
+resource "telefonicaopencloud_compute_instance_v2" "test-server" {
+  name            = "test-server"
+  image_name  = "Standard_CentOS_7_latest"
+  flavor_name = "s1.medium"
+}
+```
+
+2. Username/Password Configuration
+
+```hcl
+# Configure the TelefonicaOpenCloud Provider with Username/Password
 # This will work with a single defined/default network, otherwise you need to specify network
 # to fix errrors about multiple networks found.
 provider "telefonicaopencloud" {

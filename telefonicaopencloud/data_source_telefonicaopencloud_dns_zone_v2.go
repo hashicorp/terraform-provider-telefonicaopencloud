@@ -5,8 +5,8 @@ import (
 	"log"
 	"time"
 
-	"github.com/gophercloud/gophercloud/openstack/dns/v2/zones"
 	"github.com/hashicorp/terraform/helper/schema"
+	"github.com/huaweicloud/golangsdk/openstack/dns/v2/zones"
 )
 
 func dataSourceDNSZoneV2() *schema.Resource {
