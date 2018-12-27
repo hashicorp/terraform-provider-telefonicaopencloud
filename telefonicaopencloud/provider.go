@@ -240,6 +240,8 @@ func Provider() terraform.ResourceProvider {
 			"telefonicaopencloud_cts_tracker_v1":                  resourceCTSTrackerV1(),
 			"telefonicaopencloud_csbs_backup_v1":                  resourceCSBSBackupV1(),
 			"telefonicaopencloud_csbs_backup_policy_v1":           resourceCSBSBackupPolicyV1(),
+			"telefonicaopencloud_dms_queue_v1":                    resourceDmsQueuesV1(),
+			"telefonicaopencloud_dms_group_v1":                    resourceDmsGroupsV1(),
 			"telefonicaopencloud_vbs_backup_v2":                   resourceVBSBackupV2(),
 			"telefonicaopencloud_vbs_backup_policy_v2":            resourceVBSBackupPolicyV2(),
 		},
