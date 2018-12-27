@@ -422,6 +422,14 @@ func (c *Config) computeV2HWClient(region string) (*golangsdk.ServiceClient, err
 	})
 }
 
+//bmsClient used to access the v2.1 bms Services i.e. servers, tags.
+func (c *Config) bmsClient(region string) (*golangsdk.ServiceClient, error) {
+	return huaweisdk.NewBMSV2(c.HwClient, golangsdk.EndpointOpts{
+		Region:       c.determineRegion(region),
+		Availability: c.getHwEndpointType(),
+	})
+}
+
 func (c *Config) csbsV1Client(region string) (*golangsdk.ServiceClient, error) {
 	return huaweisdk.NewCSBSService(c.HwClient, golangsdk.EndpointOpts{
 		Region:       c.determineRegion(region),

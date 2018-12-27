@@ -32,6 +32,7 @@ var (
 	OS_ACCESS_KEY             = os.Getenv("OS_ACCESS_KEY")
 	OS_SECRET_KEY             = os.Getenv("OS_SECRET_KEY")
 	OS_TENANT_ID              = os.Getenv("OS_TENANT_ID")
+	OS_BMS_FLAVOR_NAME        = os.Getenv("OS_BMS_FLAVOR_NAME")
 )
 
 var testAccProviders map[string]terraform.ResourceProvider
@@ -321,5 +322,12 @@ func testAccAsConfigPreCheck(t *testing.T) {
 	testAccPreCheckRequiredEnvVars(t)
 	if OS_FLAVOR_ID == "" {
 		t.Skip("OS_FLAVOR_ID must be set for acceptance tests")
+	}
+}
+
+func testAccBmsFlavorPreCheck(t *testing.T) {
+	testAccPreCheckRequiredEnvVars(t)
+	if OS_BMS_FLAVOR_NAME == "" {
+		t.Skip("Provide the bms name starting with 'physical'")
 	}
 }
