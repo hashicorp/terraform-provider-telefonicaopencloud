@@ -185,6 +185,8 @@ func Provider() terraform.ResourceProvider {
 			"telefonicaopencloud_sfs_file_system_v2":     dataSourceSFSFileSystemV2(),
 			"telefonicaopencloud_csbs_backup_v1":         dataSourceCSBSBackupV1(),
 			"telefonicaopencloud_csbs_backup_policy_v1":  dataSourceCSBSBackupPolicyV1(),
+			"telefonicaopencloud_vbs_backup_v2":          dataSourceVBSBackupV2(),
+			"telefonicaopencloud_vbs_backup_policy_v2":   dataSourceVBSBackupPolicyV2(),
 			"telefonicaopencloud_cts_tracker_v1":         dataSourceCTSTrackerV1(),
 			"telefonicaopencloud_dcs_az_v1":              dataSourceDcsAZV1(),
 			"telefonicaopencloud_dcs_maintainwindow_v1":  dataSourceDcsMaintainWindowV1(),
@@ -238,6 +240,8 @@ func Provider() terraform.ResourceProvider {
 			"telefonicaopencloud_cts_tracker_v1":                  resourceCTSTrackerV1(),
 			"telefonicaopencloud_csbs_backup_v1":                  resourceCSBSBackupV1(),
 			"telefonicaopencloud_csbs_backup_policy_v1":           resourceCSBSBackupPolicyV1(),
+			"telefonicaopencloud_vbs_backup_v2":                   resourceVBSBackupV2(),
+			"telefonicaopencloud_vbs_backup_policy_v2":            resourceVBSBackupPolicyV2(),
 		},
 
 		ConfigureFunc: configureProvider,

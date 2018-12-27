@@ -1012,6 +1012,18 @@
 			"revisionTime": "2018-03-15T11:09:47Z"
 		},
 		{
+			"checksumSHA1": "Li+DJyT4BovYsCwJRI8S81qslow=",
+			"path": "github.com/huaweicloud/golangsdk/openstack/vbs/v2/backups",
+			"revision": "02234c041f693ec39067f110661bb38680003a7c",
+			"revisionTime": "2018-09-28T08:16:35Z"
+		},
+		{
+			"checksumSHA1": "a7rYe6bSG9D3tanocfAU/fDGPVY=",
+			"path": "github.com/huaweicloud/golangsdk/openstack/vbs/v2/policies",
+			"revision": "02234c041f693ec39067f110661bb38680003a7c",
+			"revisionTime": "2018-09-28T08:16:35Z"
+		},
+		{
 			"checksumSHA1": "unuouwL0EzTLflKCDFkwzrJ81d4=",
 			"path": "github.com/huaweicloud/golangsdk/pagination",
 			"revision": "b30e33595f46378156035bfec5b52b350c4b2b72",
