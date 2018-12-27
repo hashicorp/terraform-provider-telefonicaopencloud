@@ -706,6 +706,12 @@
 			"revisionTime": "2018-09-21T09:37:12Z"
 		},
 		{
+			"checksumSHA1": "OScfh+YPl7cqQQrUv7n5jeT7Vt0=",
+			"path": "github.com/huaweicloud/golangsdk/openstack/cts/v1/tracker",
+			"revision": "60672b79c76a4eec63f32293ce30b4119365e1bc",
+			"revisionTime": "2018-11-08T02:36:44Z"
+		},
+		{
 			"checksumSHA1": "4JyBFuuzamAKgV2Pzst2Ju889D8=",
 			"path": "github.com/huaweicloud/golangsdk/openstack/dcs/v1/availablezones",
 			"revision": "6e33e83cae0cb3d06328701748ec252346ae2430",
