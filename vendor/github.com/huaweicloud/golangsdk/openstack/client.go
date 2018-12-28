@@ -568,10 +568,10 @@ func NewDRSServiceV2(client *golangsdk.ProviderClient, eo golangsdk.EndpointOpts
 }
 
 func NewComputeV1(client *golangsdk.ProviderClient, eo golangsdk.EndpointOpts) (*golangsdk.ServiceClient, error) {
-	sc, err := initClientOpts(client, eo, "compute")
-	e := strings.Replace(sc.Endpoint, "v2", "v1", 1)
-	sc.Endpoint = e
-	sc.ResourceBase = e
+	sc, err := initClientOpts(client, eo, "network")
+	sc.Endpoint = strings.Replace(sc.Endpoint, "vpc", "ecs", 1)
+	sc.Endpoint = sc.Endpoint + "v1/"
+	sc.ResourceBase = sc.Endpoint + client.ProjectID + "/"
 	return sc, err
 }
 
@@ -606,16 +606,6 @@ func NewKmsKeyV1(client *golangsdk.ProviderClient, eo golangsdk.EndpointOpts) (*
 	return sc, err
 }
 
-func NewCesV1(client *golangsdk.ProviderClient, eo golangsdk.EndpointOpts) (*golangsdk.ServiceClient, error) {
-	sc, err := initClientOpts(client, eo, "compute")
-	sc.Endpoint = strings.Replace(sc.Endpoint, "ecs", "ces", 1)
-	sc.Endpoint = sc.Endpoint[:strings.LastIndex(sc.Endpoint, "v2")+3]
-	sc.Endpoint = strings.Replace(sc.Endpoint, "v2", "V1.0", 1)
-	sc.ResourceBase = sc.Endpoint
-	sc.Type = "ces"
-	return sc, err
-}
-
 func NewElasticLoadBalancer(client *golangsdk.ProviderClient, eo golangsdk.EndpointOpts) (*golangsdk.ServiceClient, error) {
 	//sc, err := initClientOpts1(client, eo, "elb")
 	sc, err := initClientOpts(client, eo, "compute")
@@ -643,6 +633,15 @@ func NewNatV2(client *golangsdk.ProviderClient, eo golangsdk.EndpointOpts) (*gol
 	sc.Endpoint = strings.Replace(sc.Endpoint, "vpc", "nat", 1)
 	sc.Endpoint = strings.Replace(sc.Endpoint, "myhwclouds", "myhuaweicloud", 1)
 	sc.ResourceBase = sc.Endpoint + "v2.0/"
+	return sc, err
+}
+
+// MapReduceV1 creates a ServiceClient that may be used with the v1 MapReduce service.
+func MapReduceV1(client *golangsdk.ProviderClient, eo golangsdk.EndpointOpts) (*golangsdk.ServiceClient, error) {
+	sc, err := initClientOpts(client, eo, "network")
+	sc.Endpoint = strings.Replace(sc.Endpoint, "vpc", "mrs", 1)
+	sc.Endpoint = sc.Endpoint + "v1.1/"
+	sc.ResourceBase = sc.Endpoint + client.ProjectID + "/"
 	return sc, err
 }
 
@@ -769,6 +768,20 @@ func NewVBS(client *golangsdk.ProviderClient, eo golangsdk.EndpointOpts) (*golan
 	}
 	sc.Endpoint = strings.Replace(sc.Endpoint, "evs", "vbs", 1)
 	sc.ResourceBase = sc.Endpoint
+	return sc, err
+}
+
+// NewMAASV1 creates a ServiceClient that may be used to access the MAAS service.
+func NewMAASV1(client *golangsdk.ProviderClient, eo golangsdk.EndpointOpts) (*golangsdk.ServiceClient, error) {
+	sc, err := initClientOpts(client, eo, "maasv1")
+	return sc, err
+}
+
+// MAASV1 creates a ServiceClient that may be used with the v1 MAAS service.
+func MAASV1(client *golangsdk.ProviderClient, eo golangsdk.EndpointOpts) (*golangsdk.ServiceClient, error) {
+	sc, err := initClientOpts(client, eo, "network")
+	sc.Endpoint = "https://oms.myhuaweicloud.com/v1/"
+	sc.ResourceBase = sc.Endpoint + client.ProjectID + "/"
 	return sc, err
 }
 

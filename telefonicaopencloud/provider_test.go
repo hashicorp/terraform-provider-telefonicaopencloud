@@ -31,6 +31,8 @@ var (
 	OS_AVAILABILITY_ZONE      = os.Getenv("OS_AVAILABILITY_ZONE")
 	OS_ACCESS_KEY             = os.Getenv("OS_ACCESS_KEY")
 	OS_SECRET_KEY             = os.Getenv("OS_SECRET_KEY")
+	OS_SRC_ACCESS_KEY         = os.Getenv("OS_SRC_ACCESS_KEY")
+	OS_SRC_SECRET_KEY         = os.Getenv("OS_SRC_SECRET_KEY")
 	OS_TENANT_ID              = os.Getenv("OS_TENANT_ID")
 	OS_BMS_FLAVOR_NAME        = os.Getenv("OS_BMS_FLAVOR_NAME")
 )
@@ -329,5 +331,13 @@ func testAccBmsFlavorPreCheck(t *testing.T) {
 	testAccPreCheckRequiredEnvVars(t)
 	if OS_BMS_FLAVOR_NAME == "" {
 		t.Skip("Provide the bms name starting with 'physical'")
+	}
+}
+
+func testAccPreCheckMaas(t *testing.T) {
+	testAccPreCheckRequiredEnvVars(t)
+
+	if OS_ACCESS_KEY == "" || OS_SECRET_KEY == "" || OS_SRC_ACCESS_KEY == "" || OS_SRC_SECRET_KEY == "" {
+		t.Skip("OS_ACCESS_KEY, OS_SECRET_KEY, OS_SRC_ACCESS_KEY, and OS_SRC_SECRET_KEY  must be set for MAAS acceptance tests")
 	}
 }
