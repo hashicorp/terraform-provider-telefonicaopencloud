@@ -245,6 +245,8 @@ func Provider() terraform.ResourceProvider {
 			"telefonicaopencloud_dms_group_v1":                    resourceDmsGroupsV1(),
 			"telefonicaopencloud_vbs_backup_v2":                   resourceVBSBackupV2(),
 			"telefonicaopencloud_vbs_backup_policy_v2":            resourceVBSBackupPolicyV2(),
+			"telefonicaopencloud_mrs_cluster_v1":                  resourceMRSClusterV1(),
+			"telefonicaopencloud_mrs_job_v1":                      resourceMRSJobV1(),
 		},
 
 		ConfigureFunc: configureProvider,
