@@ -248,6 +248,7 @@ func Provider() terraform.ResourceProvider {
 			"telefonicaopencloud_mrs_cluster_v1":                  resourceMRSClusterV1(),
 			"telefonicaopencloud_mrs_job_v1":                      resourceMRSJobV1(),
 			"telefonicaopencloud_maas_task_v1":                    resourceMaasTaskV1(),
+			"telefonicaopencloud_antiddos_v1":                     resourceAntiDdosV1(),
 		},
 
 		ConfigureFunc: configureProvider,

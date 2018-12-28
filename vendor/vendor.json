@@ -580,6 +580,12 @@
 			"revisionTime": "2018-12-25T11:16:19Z"
 		},
 		{
+			"checksumSHA1": "HVR9NEEAzULt23DLXM3jXxEN4AI=",
+			"path": "github.com/huaweicloud/golangsdk/openstack/antiddos/v1/antiddos",
+			"revision": "8b123bc7aa9a2c15ed29ba5610b0a8d72dc74606",
+			"revisionTime": "2018-12-25T11:16:19Z"
+		},
+		{
 			"checksumSHA1": "YsbxI+HIiezQExsnzH+GBc37qfY=",
 			"path": "github.com/huaweicloud/golangsdk/openstack/autoscaling/v1/configurations",
 			"revision": "b30e33595f46378156035bfec5b52b350c4b2b72",
