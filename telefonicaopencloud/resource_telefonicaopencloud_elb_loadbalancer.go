@@ -28,88 +28,88 @@ func resourceELBLoadBalancer() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
-			"name": &schema.Schema{
+			"name": {
 				Type:     schema.TypeString,
 				Required: true,
 			},
 
-			"description": &schema.Schema{
+			"description": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
 
-			"vpc_id": &schema.Schema{
+			"vpc_id": {
 				Type:     schema.TypeString,
 				Required: true,
 			},
 
-			"bandwidth": &schema.Schema{
+			"bandwidth": {
 				Type:     schema.TypeInt,
 				Optional: true,
 				Computed: true,
 			},
 
-			"type": &schema.Schema{
+			"type": {
 				Type:     schema.TypeString,
 				Required: true,
 			},
 
-			"admin_state_up": &schema.Schema{
+			"admin_state_up": {
 				Type:     schema.TypeInt,
 				Required: true,
 			},
 
-			"vip_subnet_id": &schema.Schema{
+			"vip_subnet_id": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
 
-			"az": &schema.Schema{
+			"az": {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
 
-			"charge_mode": &schema.Schema{
+			"charge_mode": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "bandwidth",
 			},
 
-			"eip_type": &schema.Schema{
+			"eip_type": {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
 
-			"security_group_id": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
-
-			"vip_address": &schema.Schema{
+			"security_group_id": {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
 
-			"tenantid": &schema.Schema{
+			"vip_address": {
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+
+			"tenantid": {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
 
-			"update_time": &schema.Schema{
+			"update_time": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
 
-			"create_time": &schema.Schema{
+			"create_time": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
 
-			"status": &schema.Schema{
+			"status": {
 				Type:     schema.TypeString,
 				Computed: true,
 			},

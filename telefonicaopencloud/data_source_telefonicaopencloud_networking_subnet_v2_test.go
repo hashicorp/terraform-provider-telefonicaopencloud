@@ -13,10 +13,10 @@ func TestAccNetworkingV2SubnetDataSource_basic(t *testing.T) {
 		PreCheck:  func() { testAccPreCheck(t) },
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{
-			resource.TestStep{
+			{
 				Config: testAccTelefonicaOpenCloudNetworkingSubnetV2DataSource_subnet,
 			},
-			resource.TestStep{
+			{
 				Config: testAccTelefonicaOpenCloudNetworkingSubnetV2DataSource_basic,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckNetworkingSubnetV2DataSourceID("data.telefonicaopencloud_networking_subnet_v2.subnet_1"),
@@ -33,28 +33,28 @@ func TestAccNetworkingV2SubnetDataSource_testQueries(t *testing.T) {
 		PreCheck:  func() { testAccPreCheck(t) },
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{
-			resource.TestStep{
+			{
 				Config: testAccTelefonicaOpenCloudNetworkingSubnetV2DataSource_subnet,
 			},
-			resource.TestStep{
+			{
 				Config: testAccTelefonicaOpenCloudNetworkingSubnetV2DataSource_cidr,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckNetworkingSubnetV2DataSourceID("data.telefonicaopencloud_networking_subnet_v2.subnet_1"),
 				),
 			},
-			resource.TestStep{
+			{
 				Config: testAccTelefonicaOpenCloudNetworkingSubnetV2DataSource_dhcpEnabled,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckNetworkingSubnetV2DataSourceID("data.telefonicaopencloud_networking_subnet_v2.subnet_1"),
 				),
 			},
-			resource.TestStep{
+			{
 				Config: testAccTelefonicaOpenCloudNetworkingSubnetV2DataSource_ipVersion,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckNetworkingSubnetV2DataSourceID("data.telefonicaopencloud_networking_subnet_v2.subnet_1"),
 				),
 			},
-			resource.TestStep{
+			{
 				Config: testAccTelefonicaOpenCloudNetworkingSubnetV2DataSource_gatewayIP,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckNetworkingSubnetV2DataSourceID("data.telefonicaopencloud_networking_subnet_v2.subnet_1"),
