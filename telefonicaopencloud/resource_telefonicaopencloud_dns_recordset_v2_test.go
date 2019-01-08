@@ -25,7 +25,7 @@ func TestAccDNSV2RecordSet_basic(t *testing.T) {
 		Providers:    testAccProviders,
 		CheckDestroy: testAccCheckDNSV2RecordSetDestroy,
 		Steps: []resource.TestStep{
-			resource.TestStep{
+			{
 				Config: testAccDNSV2RecordSet_basic(zoneName),
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckDNSV2RecordSetExists("telefonicaopencloud_dns_recordset_v2.recordset_1", &recordset),
@@ -35,7 +35,7 @@ func TestAccDNSV2RecordSet_basic(t *testing.T) {
 						"telefonicaopencloud_dns_recordset_v2.recordset_1", "records.0", "10.1.0.0"),
 				),
 			},
-			resource.TestStep{
+			{
 				Config: testAccDNSV2RecordSet_update(zoneName),
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttr("telefonicaopencloud_dns_recordset_v2.recordset_1", "name", zoneName),
@@ -60,7 +60,7 @@ func TestAccDNSV2RecordSet_readTTL(t *testing.T) {
 		Providers:    testAccProviders,
 		CheckDestroy: testAccCheckDNSV2RecordSetDestroy,
 		Steps: []resource.TestStep{
-			resource.TestStep{
+			{
 				Config: testAccDNSV2RecordSet_readTTL(zoneName),
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckDNSV2RecordSetExists("telefonicaopencloud_dns_recordset_v2.recordset_1", &recordset),
@@ -81,7 +81,7 @@ func TestAccDNSV2RecordSet_timeout(t *testing.T) {
 		Providers:    testAccProviders,
 		CheckDestroy: testAccCheckDNSV2RecordSetDestroy,
 		Steps: []resource.TestStep{
-			resource.TestStep{
+			{
 				Config: testAccDNSV2RecordSet_timeout(zoneName),
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckDNSV2RecordSetExists("telefonicaopencloud_dns_recordset_v2.recordset_1", &recordset),

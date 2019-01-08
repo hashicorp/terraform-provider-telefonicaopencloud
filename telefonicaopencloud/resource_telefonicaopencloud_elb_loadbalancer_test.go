@@ -17,13 +17,13 @@ func TestAccELBLoadBalancer_basic(t *testing.T) {
 		Providers:    testAccProviders,
 		CheckDestroy: testAccCheckELBLoadBalancerDestroy,
 		Steps: []resource.TestStep{
-			resource.TestStep{
+			{
 				Config: testAccELBLoadBalancerConfig_basic,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckELBLoadBalancerExists("telefonicaopencloud_elb_loadbalancer.loadbalancer_1", &lb),
 				),
 			},
-			resource.TestStep{
+			{
 				Config: testAccELBLoadBalancerConfig_update,
 				Check: resource.ComposeTestCheckFunc(
 					resource.TestCheckResourceAttr(
@@ -44,7 +44,7 @@ func TestAccELBLoadBalancer_secGroup(t *testing.T) {
 		Providers:    testAccProviders,
 		CheckDestroy: testAccCheckELBLoadBalancerDestroy,
 		Steps: []resource.TestStep{
-			resource.TestStep{
+			{
 				Config: testAccELBLoadBalancer_internal,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckELBLoadBalancerExists(
@@ -53,7 +53,7 @@ func TestAccELBLoadBalancer_secGroup(t *testing.T) {
 						"telefonicaopencloud_elb_loadbalancer.loadbalancer_1", "admin_state_up", "1"),
 				),
 			},
-			resource.TestStep{
+			{
 				Config: testAccELBLoadBalancer_internal_update,
 				Check: resource.ComposeTestCheckFunc(
 					testAccCheckELBLoadBalancerExists(
