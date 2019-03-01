@@ -43,8 +43,6 @@ fmtcheck:
 errcheck:
 	@sh -c "'$(CURDIR)/scripts/errcheck.sh'"
 
-vendor-status:
-	@govendor status
 
 test-compile:
 	@if [ "$(TEST)" = "./..." ]; then \
@@ -69,4 +67,4 @@ website-test:
 		@$(MAKE) -C $(GOPATH)/src/$(WEBSITE_REPO) website-provider-test PROVIDER_PATH=$(shell pwd) PROVIDER_NAME=$(PKG_NAME)
 
 
-.PHONY: build test testacc cover vet fmt fmtcheck errcheck vendor-status test-compile website website-test
+.PHONY: build test testacc cover vet fmt fmtcheck errcheck test-compile website website-test
